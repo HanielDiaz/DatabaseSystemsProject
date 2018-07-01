@@ -51,6 +51,14 @@ footer {
   padding: 20% 25%;
 }
 
+.CreateAccount {
+  position: relative;
+  font-size: 14px;
+  text-decoration: none;
+  color: white;
+  padding-left: 40%;
+}
+
 .backgroundimg {
   z-index: -1;
   position: absolute;
