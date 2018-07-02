@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="css/large.css" media="screen and (min-width: 1000px)">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
       </head>
   <body class="max-width">
       <div class="header max-width">
@@ -11,31 +12,28 @@
           <a href="home.html"><img src="http://placekitten.com/700/700" class="icon"></a>
         </div>
       </div>
-      <div class="greeting graybackground">
+      <div class="greeting">
         <div class="title">
-          <button>
             <form action="action_page.php">
-             <div class="imgcontainer">
-             </div>
-             <div class="container">
-               <label for="uname"><b>Username</b></label>
-               <input type="text" placeholder="Enter Username" name="uname" required>
-
-               <label for="psw"><b>Password</b></label>
-               <input type="password" placeholder="Enter Password" name="psw" required>
-
-               <button type="submit">Login</button>
+              <div class="row">
+               <input type="text" class="form-textbox" placeholder="Username" name="uname">
+               <div class="underline"></div>
+              </div>
+              <div class="row">
+               <input type="password" class="form-textbox" placeholder="Password" name="psw">
+                <div class="underline"></div>
+              </div>
+              <div class="row">
+               <button  class="boxshadow" type="submit">Login</button>
                <label>
                  <input type="checkbox" checked="checked" name="remember"> Remember me
                </label>
              </div>
-
-             <div class="container" style="background-color:#f1f1f1">
-               <button type="button" class="cancelbtn">Cancel</button>
-               <span class="psw">Forgot <a href="#">password?</a></span>
-             </div>
+               <div class="row">           
+                  <span class="forgotPsw-home col-half"><a href="#">Forgot password?</a></span>
+                  <a href="CreateAccount.html" class="CreateAccount-home col-half">Create Account</a>
+               </div>
             </form> 
-          <a href="CreateAccount.html" class="CreateAccount">Don't have an account?</a>
         </div>
         <!-- <img src="http://placekitten.com/1450/1250" class="backgroundimg"> -->
       </div>
