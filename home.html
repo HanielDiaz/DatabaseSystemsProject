@@ -5,6 +5,7 @@
     <title>Home</title>
     <link rel="stylesheet" type="text/css" href="css/large.css" media="screen and (min-width: 1000px)">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src='main.js'></script>
   </head>
   <body class="max-width">
     <div class="header max-width boxshadow">
@@ -13,7 +14,7 @@
     </div>
     <div class="greeting">
       <div class="title">
-          <form action="action_page.php">
+          <form action="map.html">
             <div class="row">
              <input type="text" class="form-textbox" placeholder="Username" name="uname">
              <div class="underline"></div>
@@ -23,7 +24,7 @@
               <div class="underline"></div>
             </div>
             <div class="row">
-             <button  class="boxshadow" type="submit">Login</button>
+             <button  class="boxshadow" onclick="Login('map.html')" type="button">Login</button>
              <label>
                <input type="checkbox" checked="checked" name="remember"> Remember me
              </label>
