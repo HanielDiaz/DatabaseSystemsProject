@@ -62,14 +62,14 @@
               <div class="underline"></div>
             </div>
             <div class="row">
-             <button  class="boxshadow" onclick="Login('map.html')" type="submit">Login</button>
+             <button  class="boxshadow" type="submit">Login</button>
              <label>
                <input type="checkbox" checked="checked" name="remember"> Remember me
              </label>
            </div>
              <div class="row">           
                 <span style="float:none" class="forgotPsw-home col-half"><a href="#">Forgot password?</a></span>
-                <a style="float:none" href="CreateAccount.html" class="CreateAccount-home col-half">Create Account</a>
+                <a style="float:none" href="CreateAccount.php" class="CreateAccount-home col-half">Create Account</a>
              </div>
           </form> 
       </div>
