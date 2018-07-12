@@ -13,18 +13,27 @@ ini_set('display_errors', 1);
 	  $description = mysqli_real_escape_string($db,$_POST['description']); 
 	  $numstudents = mysqli_real_escape_string($db,$_POST['numstudents']); 
 	
-$sql = "SELECT sname FROM schools WHERE email = '$sname'";
-      $result = mysqli_query($db,$sql);
-if ($result && mysqli_num_rows($result) > 0) {
-    printf("Error: That school already exists\n");
-    exit();
-}
+	$sql = "SELECT sname FROM schools WHERE email = '$sname'";
+		  $result = mysqli_query($db,$sql);
+	if ($result && mysqli_num_rows($result) > 0) {
+		printf("Error: That school already exists\n");
+		exit();
+	}
       $sql = "INSERT INTO schools(name, location, description, numStudents) VALUES ('$sname', '$location', '$description', '$numstudents')";
       $result = mysqli_query($db,$sql);
       if (!$result) {
     printf("Error: %s\n", mysqli_error($db));
     exit();
 	  }
+	  $username = $_SESSION['login_user'];
+	  $sql2 = "SELECT * FROM users WHERE email = '$username'";
+	  $result2 = mysqli_query($db, $sql2);
+	  $row = $result2->fetch_assoc();
+	  $id = $row["userID"];
+	  $sql = "UPDATE users SET school=
+		(SELECT schoolID from schools WHERE name = '$sname')
+		WHERE userID = '$id'";
+      $result = mysqli_query($db,$sql);
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
