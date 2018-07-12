@@ -28,6 +28,10 @@ if ($result && mysqli_num_rows($result) > 0) {
     printf("Error: %s\n", mysqli_error($db));
     exit();
 	  }
+	  
+	  else{
+		  header("location: home.php");
+	  }
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
@@ -44,7 +48,7 @@ if ($result && mysqli_num_rows($result) > 0) {
       </head>
   <body class="">
         <div style="margin-top: 10%;"class="CreateAccount CreateAccount-Shadow">
-          <form action="CreateAccount.php" method="post">
+          <form action="" method="post">
            <div class="container">
               <div class="row">
                 <div class="col-half">
