@@ -14,9 +14,35 @@ fname CHAR(50) NOT NULL,
 lname CHAR(50) NOT NULL,
 email CHAR(50) UNIQUE NOT NULL,
 password CHAR(50) NOT NULL,
+userlevel INT(4) NOT NULL,
 school INT(11),
 PRIMARY KEY (userID),
 FOREIGN KEY (school) REFERENCES SCHOOLS(schoolID)
 );
 
-	
+CREATE TABLE EVENTS(
+eventID INT(11) NOT NULL AUTO_INCREMENT,
+myCreator INT(11) NOT NULL,
+eventName CHAR(50) NOT NULL,
+eventCategory CHAR(50) NOT NULL,
+description TEXT(1000),
+startTime CHAR(20) NOT NULL,
+startDate CHAR(20) NOT NULL,
+location CHAR(20),
+phoneNumber CHAR(20),
+email CHAR(50),
+PRIMARY KEY (eventID),
+FOREIGN KEY (myCreator) REFERENCES USERS(userID)
+)
+
+CREATE TABLE RSOS(
+rsoID INT(11) NOT NULL AUTO_INCREMENT,
+schoolID INT(11) NOT NULL,
+adminID INT(11) NOT NULL,
+rsoName CHAR(50) NOT NULL,
+description TEXT(1000),
+numMembers INT(11) NOT NULL,
+PRIMARY KEY(rsoID),
+FOREIGN KEY (schoolID) REFERENCES SCHOOLS(schoolID),
+FOREIGN KEY (adminID) REFERENCES USERS(userID)
+);

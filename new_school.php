@@ -2,7 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
    include("Config.php");
-   include('encryption.php');
    session_start();
    $error = " ";
    if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,16 +24,17 @@ ini_set('display_errors', 1);
     printf("Error: %s\n", mysqli_error($db));
     exit();
 	  }
-	  $username = $_SESSION['login_user'];
-	  $sql2 = "SELECT * FROM users WHERE email = '$username'";
-	  $result2 = mysqli_query($db, $sql2);
-	  $row = $result2->fetch_assoc();
-	  $id = $row["userID"];
-	  $sql = "UPDATE users SET school=
-		(SELECT schoolID from schools WHERE name = '$sname')
-		WHERE userID = '$id'";
-      $result = mysqli_query($db,$sql);
-      
+	  else{
+		  $username = $_SESSION['login_user'];
+		  $sql2 = "SELECT * FROM users WHERE email = '$username'";
+		  $result2 = mysqli_query($db, $sql2);
+		  $row = $result2->fetch_assoc();
+		  $id = $row["userID"];
+		  $sql = "UPDATE users SET school=
+			(SELECT schoolID from schools WHERE name = '$sname')
+			WHERE userID = '$id'";
+		  $result = mysqli_query($db,$sql);
+      }
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
    }
