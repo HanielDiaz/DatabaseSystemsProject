@@ -22,7 +22,8 @@ ini_set('display_errors', 1);
       // username and password sent from form 
       
 	  $eventName = mysqli_real_escape_string($db,$_POST['eventName']); 
-	  $category = mysqli_real_escape_string($db,$_POST['category']); 
+	  $category = mysqli_real_escape_string($db,$_POST['category']);
+	  $privacy = mysqli_real_escape_string($db,$_POST['privacy']); 
 	  $description = mysqli_real_escape_string($db,$_POST['description']); 
 	  $time = mysqli_real_escape_string($db,$_POST['time']); 
 	  $date = mysqli_real_escape_string($db,$_POST['date']); 
@@ -30,7 +31,7 @@ ini_set('display_errors', 1);
 	  $phone = mysqli_real_escape_string($db,$_POST['phone']); 
 	  $email = mysqli_real_escape_string($db,$_POST['email']); 
  
-      $sql = "INSERT INTO events(myCreator, eventName, eventCategory, description, startTime, startDate, location, phoneNumber, email, mySchool, myRSO) VALUES ('$mycreator', '$eventName', '$category', '$description', '$time', '$date', '$location', '$phone', '$email', '$school', '$rsoID')";
+      $sql = "INSERT INTO events(myCreator, eventName, eventCategory, description, startTime, startDate, location, phoneNumber, email, mySchool, myRSO, privacy) VALUES ('$mycreator', '$eventName', '$category', '$description', '$time', '$date', '$location', '$phone', '$email', '$school', '$rsoID', '$privacy')";
       $result = mysqli_query($db,$sql);
       if (!$result) {
     printf("Error: %s\n", mysqli_error($db));
@@ -90,6 +91,13 @@ ini_set('display_errors', 1);
                <input type="text" class="form-textbox" placeholder="Contact Email" name="email" required>
                <div class="underline"></div>
               </div>
+			  <div class="row col-full">
+			  <select name='privacy'>
+			  <option value=1>Public</option>
+			  <option value=2>University Only</option>
+			  <option value=3>RSO Only</option>
+			  </select>
+			  </div>
              <div class="row">
                <div class="col-one-third">
                  <button onclick="Cancel('landing.php')" type="button" class="boxshadow CreateAccount-Button">Cancel</button>

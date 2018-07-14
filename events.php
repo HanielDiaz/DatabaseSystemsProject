@@ -39,7 +39,12 @@ $row3 = mysqli_fetch_array($result3);
 $fname = $row2["fname"];
 $lname = $row2["lname"];
 $myCreator = $fname . " " . $lname;
-echo "<tr><td>" . $myCreator. "</td><td>" . $row3['rsoName'] . "</td><td>" . $row['eventName'] . "</td></tr>";  //$row['index'] the index here is a field name
+echo "<tr><td>" . $myCreator. "</td><td>" . $row3['rsoName'] . "</td><td>" . $row['eventName'] . "</td>";  //$row['index'] the index here is a field name
+
+echo"<form method='post' action='rsopage.php'>
+<input type=\"hidden\" name = 'eventID' value=".$row["eventID"].">
+<td><input type='submit' value='View'></td>
+</form></tr>";
 }
 
 echo "</table>"; //Close the table in HTML

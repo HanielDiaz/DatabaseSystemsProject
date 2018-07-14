@@ -43,6 +43,10 @@ $row3 = mysqli_fetch_array($result3);
 if ($result && mysqli_num_rows($result3) < 1) {
 	continue;
 }			
+
+if($row['numMembers'] <5){
+	continue;
+}
 $fname = $row2["fname"];
 $lname = $row2["lname"];
 $myCreator = $fname . " " . $lname;
