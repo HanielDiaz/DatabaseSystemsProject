@@ -31,6 +31,14 @@ ini_set('display_errors', 1);
 	  }
 	  
 	  else{
+		  $sql = "INSERT INTO rsomembers(rsoID, memberID) VALUES ((
+		  SELECT rsoID FROM rsos WHERE rsoName = '$rsoName'), '$mycreator')";
+		  $result = mysqli_query($db,$sql);
+		  if (!$result) {
+    printf("Error: %s\n", mysqli_error($db));
+    exit();
+	  }
+		  
 		  header("location: landing.php");
 	  }
       

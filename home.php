@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
    include("config.php");
    include('encryption.php');
    ini_set('display_errors', '1');
@@ -10,7 +11,7 @@
       $myemail = mysqli_real_escape_string($db,$_POST['email']);
       $mypassword = mysqli_real_escape_string($db,$_POST['psw']); 
       $instance = new Encryptor($mypassword);
-	$mypassword = $instance->encrypt($mypassword); 
+	  $mypassword = $instance->encrypt($mypassword); 
       //this line pulls from the database
       $sql = "SELECT email FROM users WHERE email = '$myemail' and password = '$mypassword'";
       $result = mysqli_query($db,$sql);
@@ -29,8 +30,8 @@
 		
       if($count == 1) {//count is how many of that user name is in the database
         // session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
-         header("location: map.html");
+         $_SESSION['login_user'] = $myemail;
+			echo "<script type='text/javascript'> document.location = 'landing.php'; </script>";
       }else {
          $error = "Your Login Name or Password is invalid";
       }
@@ -69,7 +70,7 @@
            </div>
              <div class="row">           
                 <span style="float:none" class="forgotPsw-home col-half"><a href="#">Forgot password?</a></span>
-                <a style="float:none" href="CreateAccount.php" class="CreateAccount-home col-half">Create Account</a>
+                <a style="float:none" href="createaccount.php" class="CreateAccount-home col-half">Create Account</a>
              </div>
           </form> 
       </div>

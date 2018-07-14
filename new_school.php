@@ -40,6 +40,7 @@ ini_set('display_errors', 1);
    }
 ?>
 
+
 <html>
   <head>
     <meta charset="utf-8">
@@ -53,32 +54,19 @@ ini_set('display_errors', 1);
           <form action="" method="post">
            <div class="container">
               <div class="row">
-                <div class="col-half">
-                  <input type="text" class="form-textbox" placeholder="School Name" name="sname" required>
-                  <div class="underline"></div>
-                </div>
-                <div class="col-half">
-                  <input type="text" class="form-textbox" placeholder="School Location" name="location" required>
-                  <div class="underline"></div>
-                </div>
-              </div>
-              <div class="row">
-                <input type="text" class="form-textbox" placeholder="School Description" name="description" required>
+                <input type="text" class="form-textbox" placeholder="RSO Name" name="rsoName" required>
                 <div class="underline"></div>
               </div>
               <div class="row">
-               <input type="text" class="form-textbox" placeholder="Number of Students" name="numstudents" required>
+               <textarea class="form-descriptionbox" placeholder="Description" name="description" required></textarea>
                <div class="underline"></div>
-              </div>
-              <div class="row">
-                <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
               </div>
              <div class="row">
                <div class="col-one-third">
-                 <button onclick="Cancel('home.html')" type="button" class="boxshadow CreateAccount-Button">Cancel</button>
+                 <button onclick="Cancel('landing.php')" type="button" class="boxshadow CreateAccount-Button">Cancel</button>
                </div>
                <div class="col-one-third" style="float: right;">
-                 <button type="submit" style="float: right; margin-right: 12px;" class="boxshadow CreateAccount-Button">Sign Up</button>
+                 <button type="submit" style="float: right; margin-right: 12px;" class="boxshadow CreateAccount-Button">Create Event</button>
                </div>
              </div>
            </div>

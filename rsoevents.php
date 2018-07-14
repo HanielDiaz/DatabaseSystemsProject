@@ -7,8 +7,8 @@
 <body>
 
 <div class="topnav">
-  <a class="active" href="events.php">Events at my School</a>
-  <a href="rsoevents.php">Events from my RSOs</a>
+  <a href="events.php">Events at my School</a>
+  <a class="active" href="rsoevents.php">Events from my RSOs</a>
   <a href="landing.php">Back</a>
 </div>
 
@@ -18,6 +18,7 @@ $username = $_SESSION['login_user'];
 $sql = "SELECT * FROM users WHERE email = '$username'";
 $result = mysqli_query($db,$sql);
 $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+$myid = $row["userID"];
 $school = $row["school"];
 $query = "SELECT * FROM events WHERE mySchool = '$school'"; 
 $result = mysqli_query($db, $query);
@@ -36,6 +37,12 @@ $row2 = mysqli_fetch_array($result2);
 $query3 = "SELECT * FROM rsos WHERE rsoID ='$rsoid'";
 $result3 = mysqli_query($db, $query3);
 $row3 = mysqli_fetch_array($result3);
+$query4 = "SELECT * FROM rsomembers WHERE rsoID ='$rsoid' AND memberID = '$myid'";
+$result4 = mysqli_query($db, $query4);
+$row4 = mysqli_fetch_array($result4);
+if ($result && mysqli_num_rows($result4) < 1) {
+	continue;
+}	
 $fname = $row2["fname"];
 $lname = $row2["lname"];
 $myCreator = $fname . " " . $lname;

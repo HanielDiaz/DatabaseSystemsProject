@@ -3,6 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
    include("session.php");
    $username = $_SESSION['login_user'];
+   $rsoID=$_SESSION['rsoID'];
 	$sql = "SELECT * FROM users WHERE email = '$username'";
 	$result = mysqli_query($db,$sql);
 	if (!$result || mysqli_num_rows($result) == 0) {
@@ -13,10 +14,11 @@ ini_set('display_errors', 1);
 		$result = mysqli_query($db,$sql);
 		$row = $result->fetch_assoc();
 		$mycreator = $row["userID"];
+		$school = $row["school"];
 	}
 	
    $error = " ";
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
+   if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
       // username and password sent from form 
       
 	  $eventName = mysqli_real_escape_string($db,$_POST['eventName']); 
@@ -28,7 +30,7 @@ ini_set('display_errors', 1);
 	  $phone = mysqli_real_escape_string($db,$_POST['phone']); 
 	  $email = mysqli_real_escape_string($db,$_POST['email']); 
  
-      $sql = "INSERT INTO events(myCreator, eventName, eventCategory, description, startTime, startDate, location, phoneNumber, email) VALUES ('$mycreator', '$eventName', '$category', '$description', '$time', '$date', '$location', '$phone', '$email')";
+      $sql = "INSERT INTO events(myCreator, eventName, eventCategory, description, startTime, startDate, location, phoneNumber, email, mySchool, myRSO) VALUES ('$mycreator', '$eventName', '$category', '$description', '$time', '$date', '$location', '$phone', '$email', '$school', '$rsoID')";
       $result = mysqli_query($db,$sql);
       if (!$result) {
     printf("Error: %s\n", mysqli_error($db));
@@ -93,7 +95,7 @@ ini_set('display_errors', 1);
                  <button onclick="Cancel('landing.php')" type="button" class="boxshadow CreateAccount-Button">Cancel</button>
                </div>
                <div class="col-one-third" style="float: right;">
-                 <button type="submit" style="float: right; margin-right: 12px;" class="boxshadow CreateAccount-Button">Create Event</button>
+                 <button type="submit" name='submit' style="float: right; margin-right: 12px;" class="boxshadow CreateAccount-Button">Create Event</button>
                </div>
              </div>
            </div>
