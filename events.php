@@ -1,3 +1,13 @@
+<?php
+include('session.php');
+
+   if($_SERVER["REQUEST_METHOD"] == "POST" ) {
+	$eventID = mysqli_real_escape_string($db,$_POST['eventID']); 
+	$_SESSION['eventID'] = $eventID;
+	header("location: eventpage.php");
+   }
+?>
+
 
 <html>
 <header>
@@ -13,7 +23,6 @@
 </div>
 
 <?php
-include('session.php');
 $username = $_SESSION['login_user'];
 $sql = "SELECT * FROM users WHERE email = '$username'";
 $result = mysqli_query($db,$sql);
@@ -41,7 +50,7 @@ $lname = $row2["lname"];
 $myCreator = $fname . " " . $lname;
 echo "<tr><td>" . $myCreator. "</td><td>" . $row3['rsoName'] . "</td><td>" . $row['eventName'] . "</td>";  //$row['index'] the index here is a field name
 
-echo"<form method='post' action='rsopage.php'>
+echo"<form method='post' action=''>
 <input type=\"hidden\" name = 'eventID' value=".$row["eventID"].">
 <td><input type='submit' value='View'></td>
 </form></tr>";
