@@ -1,4 +1,7 @@
-
+<?php
+	include('session.php');
+	$username = $_SESSION['login_user'];
+?>
 
 <html>
 	<header>
@@ -6,8 +9,6 @@
 	
 	<body>
 	<?php
-	include('session.php');
-	$username = $_SESSION['login_user'];
 	$sql = "SELECT * FROM users WHERE email = '$username'";
 	$result = mysqli_query($db,$sql);
 	$rsoID=$_REQUEST['join'];

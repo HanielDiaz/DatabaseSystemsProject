@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-   include("session.php");
-   $username = $_SESSION['login_user'];
+    include("session.php");
+    $username = $_SESSION['login_user'];
    	$eventID=$_SESSION['eventID'];
 	$sql = "SELECT * FROM users WHERE email = '$username'";
 	$result = mysqli_query($db,$sql);
@@ -18,9 +18,14 @@ ini_set('display_errors', 1);
 	}
 	
    $error = " ";
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
+   if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Send"])) {
 	$comment = mysqli_real_escape_string($db,$_POST['comment']); 
 	$sql = "INSERT INTO COMMENTS(commenterID, eventID, commentText) VALUES ('$mycreator', '$eventID', '$comment')";
+	$result = mysqli_query($db,$sql);
+   }
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
+	$comment = mysqli_real_escape_string($db,$_POST['remove']); 
+	$sql = "DELETE FROM comments WHERE commentID = '$comment'";
 	$result = mysqli_query($db,$sql);
    }
    
@@ -53,7 +58,7 @@ ini_set('display_errors', 1);
 		echo "Email: ".$email. " <br> Description: <br>".$description;
 		echo "<br>
 		<form method='post' action=''>
-		<input type=\"hidden\" name = 'join' value=".$eventID.">
+		<input type=\"hidden\" name = 'send' value=".$eventID.">
 		Comment: <br><textarea name='comment'></textarea><br/>
 		<input type='submit' value='Send'>
 		</form>";
@@ -64,6 +69,7 @@ ini_set('display_errors', 1);
 
 	while($row = mysqli_fetch_array($result)){ 
 		$id = $row["commenterID"];
+		$commentid = $row["commentID"];
 		$currComment = $row["commentText"];
 		$query2 = "SELECT * FROM users WHERE userID ='$id'";
 		$result2 = mysqli_query($db, $query2);
@@ -74,6 +80,12 @@ ini_set('display_errors', 1);
 		echo $commenterName. ":<br>
 			<input type='textarea' name='comment' value='".$currComment."' readonly><br>
 			<br>";
+		if($id == $mycreator){
+			echo "<form method='post' action=''>
+			<input type=\"hidden\" name = 'remove' value=".$commentid.">
+			<input type='submit' value='Remove'>
+		</form>";
+		}
 	}
 ?>
 		

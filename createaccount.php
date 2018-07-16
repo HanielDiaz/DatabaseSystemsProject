@@ -14,19 +14,21 @@ ini_set('display_errors', 1);
 	  $myemail = mysqli_real_escape_string($db,$_POST['email']); 
 	  
 	  $instance = new Encryptor($mypassword);
-	$mypassword = $instance->encrypt($mypassword); 
+	  $mypassword = $instance->encrypt($mypassword); 
 	
-$sql = "SELECT email FROM users WHERE email = '$myemail'";
+	  $sql = "SELECT email FROM users WHERE email = '$myemail'";
       $result = mysqli_query($db,$sql);
-if ($result && mysqli_num_rows($result) > 0) {
-    printf("Error: That email already exists\n");
-    exit();
-}
+	  
+	  if ($result && mysqli_num_rows($result) > 0) {
+		  printf("Error: That email already exists\n");
+		  exit();
+	  }
+	
       $sql = "INSERT INTO users(password, fname, lname, email, userLevel) VALUES ('$mypassword', '$myfname', '$mylname', '$myemail', 1)";
       $result = mysqli_query($db,$sql);
       if (!$result) {
-    printf("Error: %s\n", mysqli_error($db));
-    exit();
+		  printf("Error: %s\n", mysqli_error($db));
+		  exit();
 	  }
 	  
 	  else{
